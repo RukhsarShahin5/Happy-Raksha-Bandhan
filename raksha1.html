@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raksha Bandhan Greeting Card</title>
+    
+</head>
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:#ccc;
+    overflow: hidden;
+    position: relative;
+}
+
+.card {
+    background-color:gray
+    ;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #FFD700;
+    }
+    to {
+        box-shadow: 0 0 20px #FF4500;
+    }
+}
+
+h1 {
+    font-size: 32px;
+    font-family: Arial,Helvetica, sans-serif;
+    background: linear-gradient(to right, #f32170, #ff6b08,#cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+    margin-bottom: 10px;
+    
+    animation: rotateText 3s infinite linear;
+}
+
+@keyframes rotateText {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(30deg);
+    }
+}
+
+p {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #f32170, #ff6b08,#cf23cf, #eedd44);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3CB371;
+}
+label{
+    color: white;
+}
+
+#color-picker {
+    margin-top: 15px;
+
+}
+
+.rakhi-animation {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.rakhi {
+    position: absolute;
+    top: -100px;
+    width: 100px;
+    height: auto;
+    animation: fall 5s infinite ease-in;
+}
+
+@keyframes fall {
+    from {
+        top: -100px;
+        opacity: 6;
+    }
+    to {
+        top: 100%;
+        opacity: 9;
+    }
+}
+
+</style>
+<body>
+    <div class="card">
+        <h1 id="festival-name">Happy Raksha Bandhan</h1>
+        <p id="message">Dear <span id="brother-name">Brother</span>,</p>
+        <p><span id="sister-name">Sister</span> wishes you all the love and happiness in the world.</p>
+        <input type="text" id="brother-input" placeholder="Enter Brother's Name">
+        <input type="text" id="sister-input" placeholder="Enter Sister's Name">
+        <textarea id="custom-message" placeholder="Enter a custom message"></textarea>
+        <button onclick="updateCard()">Update Card</button>
+        <div class="photo">
+            <img src="rakhig-removebg-preview.png" alt="" width="150px" height="auto">
+        </div>
+    <div>
+            <label for="color-picker">Choose Background Color: </label>
+            <input type="color" id="color-picker" value="#FFD700">
+        </div> 
+    </div> 
+
+    <div class="rakhi-animation">
+        <img src="rakhi.png" class="rakhi" alt="Rakhi">
+    </div>
+
+    <script>
+function updateCard() {
+    const brotherName = document.getElementById('brother-input').value;
+    const sisterName = document.getElementById('sister-input').value;
+    const customMessage = document.getElementById('custom-message').value;
+    const bgColor = document.getElementById('color-picker').value;
+
+    if (brotherName) {
+        document.getElementById('brother-name').innerText = brotherName;
+    }
+
+    if (sisterName) {
+        document.getElementById('sister-name').innerText = sisterName;
+    }
+
+    if (customMessage) {
+        document.getElementById('message').innerText = customMessage;
+    }
+
+    document.querySelector('.card').style.backgroundColor = bgColor;
+}
+
+// Adding multiple falling rakhis dynamically
+function createFallingRakhis() {
+    const rakhiContainer = document.querySelector('.rakhi-animation');
+    for (let i = 0; i < 10; i++) {
+        const rakhi = document.createElement('img');
+        rakhi.src = 'rakhi.png';
+        rakhi.classList.add('rakhi');
+        rakhi.style.left = `${Math.random() * 100}%`;
+        rakhi.style.animationDuration = `${3 + Math.random() * 2}s`;
+        rakhiContainer.appendChild(rakhi);
+    }
+}
+
+createFallingRakhis();
+
+    </script>
+</body>
+</html>
